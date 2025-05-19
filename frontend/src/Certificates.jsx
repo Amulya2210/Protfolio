@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useInView } from './useInView.js';
 import sqlBasicCert from '../../Constent Item/Certification/sql_basic certificate (1).pdf';
 import pythonBasicCert from '../../Constent Item/Certification/python_basic certificate (1).pdf';
 import pythonDataScienceCert from '../../Constent Item/Certification/Python Data science.pdf';
@@ -31,28 +33,39 @@ const certificates = [
 ];
 
 export default function Certificates() {
+  const [open, setOpen] = useState(false);
+  const [ref, inView] = useInView();
   return (
-    <div className="mt-16 w-full max-w-2xl bg-gradient-to-br from-yellow-200/20 via-blue-200/10 to-purple-200/10 rounded-3xl shadow-2xl px-8 py-12 flex flex-col items-center border-4 border-yellow-300/30 relative overflow-hidden">
+    <div ref={ref} className={`mt-16 w-full max-w-2xl bg-gradient-to-br from-yellow-200/20 via-blue-200/10 to-purple-200/10 rounded-3xl shadow-2xl px-8 py-12 flex flex-col items-center border-4 border-yellow-300/30 relative overflow-hidden transition-all duration-700 ${inView ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
       {/* Solar system decorative orbits */}
       <div className="absolute -top-20 -left-20 w-72 h-72 border-4 border-yellow-200/30 rounded-full animate-spin-slow pointer-events-none z-0" />
       <div className="absolute -bottom-24 right-0 w-60 h-60 border-4 border-blue-200/20 rounded-full animate-spin-reverse pointer-events-none z-0" />
       <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-yellow-300/20 rounded-full blur-2xl opacity-30 animate-pulse -translate-x-1/2 -translate-y-1/2 z-0" />
       <h2 className="text-4xl font-extrabold text-yellow-300 mb-10 text-center border-b-4 border-yellow-300 pb-2 w-full tracking-wider drop-shadow-lg z-10">Certificates</h2>
-      <ul className="w-full flex flex-col gap-5 z-10">
-        {certificates.map((cert, idx) => (
-          <li key={cert.name} className="relative">
-            <button
-              className="w-full text-left px-6 py-4 rounded-xl bg-yellow-200/40 hover:bg-yellow-300/60 text-lg font-bold text-yellow-900 shadow-lg transition flex items-center gap-3 border-2 border-yellow-300/30 hover:scale-105 hover:shadow-yellow-400/40 duration-300"
-              onClick={() => window.open(cert.file, '_blank')}
-            >
-              <span className="inline-block w-3 h-3 rounded-full bg-yellow-400 mr-3 animate-pulse" />
-              {cert.name}
-            </button>
-            {/* Solar system mini planet effect */}
-            <div className="absolute -top-3 -right-3 w-6 h-6 bg-yellow-300 rounded-full blur-md opacity-40 animate-pulse" />
-          </li>
-        ))}
-      </ul>
+      <div className="w-full flex flex-col items-center z-10">
+        <button
+          className="px-8 py-4 rounded-xl bg-yellow-400/70 hover:bg-yellow-500/80 text-xl font-bold text-yellow-900 shadow-lg transition border-2 border-yellow-300/50 hover:scale-105 hover:shadow-yellow-400/40 duration-300 mb-6"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? 'Hide Certificates' : 'Unlock Certificates'}
+        </button>
+        {open && (
+          <ul className="w-full flex flex-col gap-5 animate-fade-in-up">
+            {certificates.map((cert, idx) => (
+              <li key={cert.name} className="relative">
+                <button
+                  className="w-full text-left px-6 py-4 rounded-xl bg-yellow-200/40 hover:bg-yellow-300/60 text-lg font-bold text-yellow-900 shadow-lg transition flex items-center gap-3 border-2 border-yellow-300/30 hover:scale-105 hover:shadow-yellow-400/40 duration-300"
+                  onClick={() => window.open(cert.file, '_blank')}
+                >
+                  <span className="inline-block w-3 h-3 rounded-full bg-yellow-400 mr-3 animate-pulse" />
+                  {cert.name}
+                </button>
+                <div className="absolute -top-3 -right-3 w-6 h-6 bg-yellow-300 rounded-full blur-md opacity-40 animate-pulse" />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
