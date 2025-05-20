@@ -1,5 +1,7 @@
 import p3 from '../../Constent Item/photo/p3.jpg';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ExtraAchievements } from './ExtraAchievements.jsx';
 
 const timelineData = [
 	{
@@ -32,7 +34,7 @@ export default function AboutSection() {
 	const [unlocked, setUnlocked] = useState(false);
 	const [openIndex, setOpenIndex] = useState(null);
 	return (
-		<div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-indigo-900 via-blue-900 to-black text-white relative overflow-hidden px-2 py-10">
+		<div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-indigo-900 via-blue-900 to-black text-white relative overflow-hidden px-2 sm:px-4 py-8 sm:py-10">
 			{/* Solar system background */}
 			<div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
 				<div className="w-96 h-96 border-2 border-yellow-300/20 rounded-full absolute animate-spin-slow" />
@@ -41,12 +43,12 @@ export default function AboutSection() {
 				<div className="w-32 h-32 bg-yellow-400 rounded-full blur-2xl opacity-20 absolute animate-pulse" />
 			</div>
 			{/* About Me section locked behind photo */}
-			<div className="z-10 max-w-2xl mx-auto mb-10 text-center flex flex-col items-center">
+			<div className="z-10 max-w-xs sm:max-w-2xl mx-auto mb-8 sm:mb-10 text-center flex flex-col items-center">
 				{!unlocked ? (
 					<img
 						src={p3}
 						alt="Unlock About"
-						className="w-40 h-40 rounded-full border-4 border-yellow-300 shadow-xl mb-6 object-cover cursor-pointer hover:scale-105 transition"
+						className="w-28 h-28 sm:w-40 sm:h-40 rounded-full border-4 border-yellow-300 shadow-xl mb-4 sm:mb-6 object-cover cursor-pointer hover:scale-105 transition"
 						onClick={() => setUnlocked(true)}
 					/>
 				) : (
@@ -54,11 +56,11 @@ export default function AboutSection() {
 						<img
 							src={p3}
 							alt="Ayush Amulya"
-							className="w-40 h-40 rounded-full border-4 border-yellow-300 shadow-xl mb-6 object-cover"
+							className="w-28 h-28 sm:w-40 sm:h-40 rounded-full border-4 border-yellow-300 shadow-xl mb-4 sm:mb-6 object-cover"
 							style={{ pointerEvents: 'none' }}
 						/>
-						<h1 className="text-4xl font-bold mb-4">About Me</h1>
-						<p className="text-lg md:text-xl bg-white/10 backdrop-blur-md rounded-xl px-6 py-4 shadow-lg border border-white/20 mb-6">
+						<h1 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4">About Me</h1>
+						<p className="text-base sm:text-lg md:text-xl bg-white/10 backdrop-blur-md rounded-xl px-4 sm:px-6 py-3 sm:py-4 shadow-lg border border-white/20 mb-4 sm:mb-6">
 							I'm Ayush Amulya, a passionate full-stack software developer with a
 							B.Tech degree in Computer Science and Engineering. I thrive at the
 							intersection of technology and creativity, always eager to explore new
@@ -77,7 +79,7 @@ export default function AboutSection() {
 					</>
 				)}
 				{/* Timeline always visible below photo/about */}
-				<div className="z-10 flex flex-col items-center w-full max-w-xl relative">
+				<div className="z-10 flex flex-col items-center w-full max-w-xs sm:max-w-xl relative">
 					<div className="absolute left-1/2 -translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-400/40 via-blue-400/30 to-purple-400/30" style={{ zIndex: 0 }} />
 					{timelineData.map((item, idx) => (
 						<div key={item.year} className="relative w-full flex items-center mb-16 last:mb-0">
@@ -126,14 +128,18 @@ export default function AboutSection() {
 						</div>
 					))}
 				</div>
-			</div>
-			<style>{`
+
+				{/* Extra Achievements Section */}
+				<ExtraAchievements />
+
+				<style>{`
         @keyframes spin-slow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .animate-spin-slow { animation: spin-slow 18s linear infinite; }
         .animate-spin-reverse { animation: spin-slow 24s linear infinite reverse; }
         @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
         .animate-fade-in-up { animation: fade-in-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) both; }
       `}</style>
+			</div>
 		</div>
 	);
 }

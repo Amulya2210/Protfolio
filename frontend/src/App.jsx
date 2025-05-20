@@ -14,7 +14,6 @@ import Projects from './Projects.jsx';
 import Certificates from './Certificates.jsx';
 import Home from './Home.jsx';
 import ResumeSection from './ResumeSection.jsx';
-import resumeFile from '../../Constent Item/Resume/Ayush Amulya_Resume_SD.I.pdf';
 
 export default function App() {
   const navigate = useNavigate();
@@ -31,28 +30,28 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-indigo-900 to-blue-900 relative overflow-hidden">
       {/* Sticky Header Navigation */}
-      <header className="fixed top-0 left-0 w-full z-50 flex items-center px-8 py-4 bg-black/60 backdrop-blur-md shadow-lg">
-        <nav className="flex gap-8 items-center">
-          <button onClick={() => skillsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold text-lg hover:underline">Skills</button>
-          <button onClick={() => projectsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold text-lg hover:underline">Projects</button>
-          <button onClick={() => certsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold text-lg hover:underline">Certificates</button>
+      <header className="fixed top-0 left-0 w-full z-50 flex items-center px-2 sm:px-4 md:px-8 py-3 sm:py-4 bg-black/60 backdrop-blur-md shadow-lg">
+        <nav className="flex gap-4 sm:gap-8 items-center text-sm sm:text-base md:text-lg w-full flex-wrap">
+          <button onClick={() => skillsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold hover:underline">Skills</button>
+          <button onClick={() => projectsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold hover:underline">Projects</button>
+          <button onClick={() => certsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold hover:underline">Certificates</button>
+          <button onClick={() => navigate('/fidelity-experience')} className="text-yellow-300 font-bold hover:underline">Experience</button>
           <a
-            href={resumeFile}
+            href="/AYUSH_AMULYA_RESUME_SD_I.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-yellow-300 font-bold text-lg hover:underline"
-            style={{ marginLeft: '8px' }}
+            className="text-yellow-300 font-bold hover:underline ml-1"
           >
             Resume
           </a>
           <button
-            className="text-yellow-300 font-bold text-lg hover:underline ml-2 relative"
+            className="text-yellow-300 font-bold hover:underline ml-2 relative"
             onClick={() => setShowContact(v => !v)}
           >
             Contact Me
           </button>
           {showContact && (
-            <div className="absolute top-16 right-0 bg-white rounded-2xl shadow-2xl px-8 py-6 flex flex-col gap-4 z-50 animate-fade-in-up border-2 border-yellow-200 min-w-[270px]">
+            <div className="absolute top-16 right-0 bg-white rounded-2xl shadow-2xl px-4 sm:px-8 py-4 sm:py-6 flex flex-col gap-4 z-50 animate-fade-in-up border-2 border-yellow-200 min-w-[200px] sm:min-w-[270px]">
               <a href="https://www.linkedin.com/in/ayush-amulya-443614256/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-blue-700 hover:text-blue-900 font-semibold text-lg transition"><FaLinkedin className="text-2xl" /> LinkedIn</a>
               <a href="https://leetcode.com/u/amulyaayush81/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-orange-500 hover:text-orange-700 font-semibold text-lg transition"><SiLeetcode className="text-2xl" /> LeetCode</a>
               <a href="https://github.com/Amulya2210" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-800 hover:text-black font-semibold text-lg transition"><FaGithub className="text-2xl" /> GitHub</a>
@@ -63,11 +62,11 @@ export default function App() {
           )}
         </nav>
         <button
-          className="ml-auto text-2xl text-white hover:text-yellow-400 transition flex items-center gap-2"
+          className="ml-auto text-xl sm:text-2xl text-white hover:text-yellow-400 transition flex items-center gap-2"
           onClick={() => navigate('/about')}
           aria-label="About"
         >
-          <FaKey /> <span className="font-semibold text-base">About Me</span>
+          <FaKey /> <span className="font-semibold text-xs sm:text-base">About Me</span>
         </button>
       </header>
       {/* Solar system background planets */}
@@ -75,8 +74,9 @@ export default function App() {
       <div className="absolute bottom-20 right-20 w-24 h-24 bg-blue-300 rounded-full blur-xl opacity-20 animate-spin-slow" style={{zIndex:0}} />
       <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-purple-400 rounded-full blur-lg opacity-20 animate-pulse" style={{zIndex:0}} />
       {/* Main content */}
-      <div className="z-10 w-full flex flex-col items-center pt-24">
+      <div className="z-10 w-full flex flex-col items-center pt-24 px-1 sm:px-2 md:px-0">
         <section><Home /></section>
+        <section><Experience /></section>
         <section ref={el => { skillsRef.current = el; skillsInViewRef.current = el; }}>
           <div className={skillsInView ? 'animate-fade-in-up' : 'opacity-0 translate-y-10 transition-all duration-700'}>
             <Skills />

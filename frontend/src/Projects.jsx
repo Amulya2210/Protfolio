@@ -60,16 +60,16 @@ export default function Projects() {
   return (
     <div
       ref={ref}
-      className={`mt-16 w-full max-w-6xl bg-gradient-to-br from-yellow-200/30 via-blue-200/20 to-purple-200/20 rounded-3xl shadow-2xl px-2 sm:px-4 md:px-8 py-8 md:py-12 flex flex-col items-center border-4 border-yellow-300/40 relative overflow-hidden transition-all duration-700 backdrop-blur-xl ${inView ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}
+      className={`mt-10 sm:mt-16 w-full max-w-xs sm:max-w-3xl lg:max-w-6xl bg-gradient-to-br from-yellow-200/30 via-blue-200/20 to-purple-200/20 rounded-3xl shadow-2xl px-2 sm:px-4 md:px-8 py-6 sm:py-8 md:py-12 flex flex-col items-center border-4 border-yellow-300/40 relative overflow-hidden transition-all duration-700 backdrop-blur-xl ${inView ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}
     >
       {/* Solar system decorative orbits - enhanced */}
       <div className="absolute -top-24 -left-24 w-72 sm:w-96 h-72 sm:h-96 border-4 border-yellow-200/30 rounded-full animate-spin-slow pointer-events-none z-0 blur-md" />
       <div className="absolute -bottom-32 right-0 w-60 sm:w-80 h-60 sm:h-80 border-4 border-blue-200/20 rounded-full animate-spin-reverse pointer-events-none z-0 blur-lg" />
       <div className="absolute top-1/2 left-1/2 w-24 sm:w-40 h-24 sm:h-40 bg-yellow-300/20 rounded-full blur-2xl opacity-30 animate-pulse -translate-x-1/2 -translate-y-1/2 z-0" />
-      <h2 className="text-3xl sm:text-4xl font-extrabold text-yellow-300 mb-8 sm:mb-10 text-center border-b-4 border-yellow-300 pb-2 w-full tracking-wider drop-shadow-lg z-10 animate-typewriter overflow-hidden whitespace-nowrap" style={{animationDelay: '0.2s'}}>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-yellow-300 mb-6 sm:mb-8 md:mb-10 text-center border-b-4 border-yellow-300 pb-2 w-full tracking-wider drop-shadow-lg z-10 animate-typewriter overflow-hidden whitespace-nowrap" style={{animationDelay: '0.2s'}}>
         Projects
       </h2>
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 z-10">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-10 z-10">
         {projects.map((p, i) => (
           <ProjectCard
             key={p.name}
@@ -86,7 +86,7 @@ export default function Projects() {
         ))}
       </div>
       {/* Floating View All Projects Button */}
-      <a href="https://github.com/Amulya2210?tab=repositories" target="_blank" rel="noopener noreferrer" className="fixed bottom-8 right-8 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-yellow-400/60 transition-all duration-300 z-50 backdrop-blur-md border-2 border-yellow-200/60">
+      <a href="https://github.com/Amulya2210?tab=repositories" target="_blank" rel="noopener noreferrer" className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg hover:scale-105 hover:shadow-yellow-400/60 transition-all duration-300 z-50 backdrop-blur-md border-2 border-yellow-200/60 text-sm sm:text-base">
         View All Projects
       </a>
       {/* Modal for project details */}
