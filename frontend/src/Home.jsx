@@ -28,8 +28,10 @@ export default function Home() {
           <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-600 rounded-full opacity-60 transition-all duration-700 group-hover:opacity-100 animate-underline-glow" />
         </div>
       </div>
-      <p className="text-base sm:text-xl md:text-2xl font-semibold text-cyan-200 mt-2 px-3 sm:px-6 py-2 sm:py-3 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl border border-cyan-300/30 animate-fade-in-up transition-all duration-700 text-center max-w-lg mx-auto">
-        Passionate about technology, obsessed with clean code—I'm Ayush, a full-stack developer on a mission to create impact.
+      <p className="text-base sm:text-xl md:text-2xl font-semibold text-cyan-200 mt-2 px-3 sm:px-6 py-2 sm:py-3 rounded-2xl bg-white/10 backdrop-blur-lg shadow-xl border border-cyan-300/30 animate-fade-in-up transition-all duration-700 text-center max-w-lg mx-auto relative tagline-crazy group cursor-pointer overflow-hidden">
+        <span className="relative z-10">Passionate about technology, obsessed with clean code—I'm Ayush, a full-stack developer on a mission to create impact.</span>
+        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-yellow-300 via-pink-400 to-blue-400 opacity-0 group-hover:opacity-60 blur-2xl transition-all duration-500 pointer-events-none" />
+        <span className="absolute left-0 top-0 w-full h-full pointer-events-none z-0 group-hover:animate-crazy-glow" />
       </p>
       <button
         className="absolute top-4 sm:top-6 right-4 sm:right-8 text-2xl sm:text-3xl text-white hover:text-yellow-400 transition z-20 bg-black/30 rounded-full p-2 shadow-lg border-2 border-yellow-300"
@@ -45,6 +47,23 @@ export default function Home() {
           100% { box-shadow: 0 0 0px 0px #ffe066; }
         }
         .animate-underline-glow { animation: underline-glow 2.5s infinite; }
+        .tagline-crazy {
+          box-shadow: 0 0 24px 0 #ffe06644, 0 0 48px 0 #a5b4fc33;
+        }
+        .tagline-crazy:hover {
+          box-shadow: 0 0 48px 8px #ffe066, 0 0 96px 16px #a5b4fc, 0 0 0 8px #fff2cc44;
+          transform: scale(1.04) rotate(-1deg);
+        }
+        @keyframes crazy-glow {
+          0% { filter: blur(16px) brightness(1.2) hue-rotate(0deg); opacity: 0.7; }
+          25% { filter: blur(24px) brightness(1.4) hue-rotate(30deg); opacity: 1; }
+          50% { filter: blur(32px) brightness(1.6) hue-rotate(60deg); opacity: 0.8; }
+          75% { filter: blur(24px) brightness(1.4) hue-rotate(330deg); opacity: 1; }
+          100% { filter: blur(16px) brightness(1.2) hue-rotate(0deg); opacity: 0.7; }
+        }
+        .group:hover .group-hover\:animate-crazy-glow {
+          animation: crazy-glow 1.2s infinite linear alternate;
+        }
       `}</style>
     </div>
   );

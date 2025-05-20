@@ -2,6 +2,7 @@ import p3 from '../../Constent Item/photo/p3.jpg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ExtraAchievements } from './ExtraAchievements.jsx';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const timelineData = [
 	{
@@ -33,8 +34,13 @@ const timelineData = [
 export default function AboutSection() {
 	const [unlocked, setUnlocked] = useState(false);
 	const [openIndex, setOpenIndex] = useState(null);
+	const navigate = useNavigate();
 	return (
 		<div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-indigo-900 via-blue-900 to-black text-white relative overflow-hidden px-2 sm:px-4 py-8 sm:py-10">
+			{/* Back Button */}
+			<button onClick={() => navigate(-1)} className="absolute top-6 left-6 bg-black/60 text-yellow-300 px-4 py-2 rounded-full font-bold shadow hover:bg-yellow-400 hover:text-black transition z-20 border-2 border-yellow-200/40 flex items-center gap-2">
+				<FaArrowLeft /> Back
+			</button>
 			{/* Solar system background */}
 			<div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
 				<div className="w-96 h-96 border-2 border-yellow-300/20 rounded-full absolute animate-spin-slow" />
@@ -43,7 +49,7 @@ export default function AboutSection() {
 				<div className="w-32 h-32 bg-yellow-400 rounded-full blur-2xl opacity-20 absolute animate-pulse" />
 			</div>
 			{/* About Me section locked behind photo */}
-			<div className="z-10 max-w-xs sm:max-w-2xl mx-auto mb-8 sm:mb-10 text-center flex flex-col items-center">
+			<div className="z-10 max-w-xs sm:max-w-2xl mx-auto mb-8 sm:mb-10 text-center flex flex-col items-center relative">
 				{!unlocked ? (
 					<img
 						src={p3}
@@ -59,7 +65,11 @@ export default function AboutSection() {
 							className="w-28 h-28 sm:w-40 sm:h-40 rounded-full border-4 border-yellow-300 shadow-xl mb-4 sm:mb-6 object-cover"
 							style={{ pointerEvents: 'none' }}
 						/>
-						<h1 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4">About Me</h1>
+						<div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+							<h1 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4">About Me</h1>
+							<span className="hidden sm:inline-block h-8 border-l-2 border-yellow-300 mx-2"></span>
+							<h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4 text-yellow-300 cursor-pointer hover:underline" onClick={() => document.getElementById('extra-achievements-header')?.scrollIntoView({behavior:'smooth'})}>Extra Achievements</h2>
+						</div>
 						<p className="text-base sm:text-lg md:text-xl bg-white/10 backdrop-blur-md rounded-xl px-4 sm:px-6 py-3 sm:py-4 shadow-lg border border-white/20 mb-4 sm:mb-6">
 							I'm Ayush Amulya, a passionate full-stack software developer with a
 							B.Tech degree in Computer Science and Engineering. I thrive at the
@@ -78,68 +88,69 @@ export default function AboutSection() {
 						</p>
 					</>
 				)}
-				{/* Timeline always visible below photo/about */}
-				<div className="z-10 flex flex-col items-center w-full max-w-xs sm:max-w-xl relative">
-					<div className="absolute left-1/2 -translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-400/40 via-blue-400/30 to-purple-400/30" style={{ zIndex: 0 }} />
-					{timelineData.map((item, idx) => (
-						<div key={item.year} className="relative w-full flex items-center mb-16 last:mb-0">
-							<div className="absolute left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-yellow-400/40 via-blue-400/30 to-purple-400/30" style={{ zIndex: 0 }} />
-							<div className={`mx-auto flex flex-col items-center w-full z-10`}>
-								<button
-									className={`group flex flex-col items-center focus:outline-none transition-transform duration-300 ${openIndex === idx ? 'scale-110' : 'hover:scale-105'}`}
-									onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-									aria-label={`Show details for ${item.year}`}
+			</div>
+			{/* Timeline always visible below photo/about */}
+			<div className="z-10 flex flex-col items-center w-full max-w-xs sm:max-w-xl relative">
+				<div className="absolute left-1/2 -translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-400/40 via-blue-400/30 to-purple-400/30" style={{ zIndex: 0 }} />
+				{timelineData.map((item, idx) => (
+					<div key={item.year} className="relative w-full flex items-center mb-16 last:mb-0">
+						<div className="absolute left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-yellow-400/40 via-blue-400/30 to-purple-400/30" style={{ zIndex: 0 }} />
+						<div className={`mx-auto flex flex-col items-center w-full z-10`}>
+							<button
+								className={`group flex flex-col items-center focus:outline-none transition-transform duration-300 ${openIndex === idx ? 'scale-110' : 'hover:scale-105'}`}
+								onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+								aria-label={`Show details for ${item.year}`}
+							>
+								<div
+									className={`w-20 h-20 rounded-full flex items-center justify-center shadow-lg border-4 ${
+										idx === 0
+											? 'bg-yellow-300/80 border-yellow-400'
+											: idx === 1
+											? 'bg-blue-400/80 border-blue-400'
+											: 'bg-purple-400/80 border-purple-400'
+									} group-hover:shadow-2xl group-hover:brightness-110 transition-all duration-300 animate-pulse`}
 								>
-									<div
-										className={`w-20 h-20 rounded-full flex items-center justify-center shadow-lg border-4 ${
-											idx === 0
-												? 'bg-yellow-300/80 border-yellow-400'
-												: idx === 1
-												? 'bg-blue-400/80 border-blue-400'
-												: 'bg-purple-400/80 border-purple-400'
-										} group-hover:shadow-2xl group-hover:brightness-110 transition-all duration-300 animate-pulse`}
+									<span className="text-xl font-bold text-black drop-shadow-lg">
+										{item.year}
+									</span>
+								</div>
+								<span className="mt-3 text-lg font-semibold text-white drop-shadow-md">
+									{item.title}
+								</span>
+								<span className="text-sm text-cyan-100 mb-2">
+									{item.summary}
+								</span>
+							</button>
+							{openIndex === idx && (
+								<div className="mt-4 bg-white/90 text-gray-900 rounded-xl shadow-2xl border border-yellow-300/30 px-6 py-4 max-w-lg w-full animate-fade-in-up z-20">
+									<button
+										className="absolute top-2 right-4 text-gray-500 hover:text-red-500 text-xl font-bold focus:outline-none"
+										onClick={() => setOpenIndex(null)}
+										aria-label="Close details"
 									>
-										<span className="text-xl font-bold text-black drop-shadow-lg">
-											{item.year}
-										</span>
+										×
+									</button>
+									<div className="whitespace-pre-line text-base md:text-lg font-medium">
+										{item.details}
 									</div>
-									<span className="mt-3 text-lg font-semibold text-white drop-shadow-md">
-										{item.title}
-									</span>
-									<span className="text-sm text-cyan-100 mb-2">
-										{item.summary}
-									</span>
-								</button>
-								{openIndex === idx && (
-									<div className="mt-4 bg-white/90 text-gray-900 rounded-xl shadow-2xl border border-yellow-300/30 px-6 py-4 max-w-lg w-full animate-fade-in-up z-20">
-										<button
-											className="absolute top-2 right-4 text-gray-500 hover:text-red-500 text-xl font-bold focus:outline-none"
-											onClick={() => setOpenIndex(null)}
-											aria-label="Close details"
-										>
-											×
-										</button>
-										<div className="whitespace-pre-line text-base md:text-lg font-medium">
-											{item.details}
-										</div>
-									</div>
-								)}
-							</div>
+								</div>
+							)}
 						</div>
-					))}
-				</div>
+					</div>
+				))}
+			</div>
 
-				{/* Extra Achievements Section */}
-				<ExtraAchievements />
+			{/* Extra Achievements Section */}
+			<h2 id="extra-achievements-header" className="text-3xl sm:text-4xl font-extrabold text-yellow-300 mb-4 text-center border-b-4 border-yellow-300 pb-2 w-full max-w-xs tracking-wider drop-shadow-lg z-10 mt-16">Extra Achievements</h2>
+			<ExtraAchievements />
 
-				<style>{`
+			<style>{`
         @keyframes spin-slow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .animate-spin-slow { animation: spin-slow 18s linear infinite; }
         .animate-spin-reverse { animation: spin-slow 24s linear infinite reverse; }
         @keyframes fade-in-up { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
         .animate-fade-in-up { animation: fade-in-up 0.7s cubic-bezier(0.23, 1, 0.32, 1) both; }
       `}</style>
-			</div>
 		</div>
 	);
 }

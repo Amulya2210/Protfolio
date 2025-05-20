@@ -1,5 +1,5 @@
 import { FaHtml5, FaCss3Alt, FaJs, FaNodeJs, FaReact, FaJava, FaGitAlt, FaPython, FaDocker, FaAws } from 'react-icons/fa';
-import { SiTypescript, SiExpress, SiMongodb, SiTailwindcss, SiMysql, SiPostgresql, SiSnowflake, SiCplusplus, SiC, SiSpringboot, SiIntellijidea, SiPostman } from 'react-icons/si';
+import { SiTypescript, SiExpress, SiMongodb, SiTailwindcss, SiMysql, SiPostgresql, SiSnowflake, SiCplusplus, SiC, SiSpringboot, SiIntellijidea, SiPostman, SiJirasoftware } from 'react-icons/si';
 import { useState } from 'react';
 
 export default function Skills() {
@@ -56,6 +56,7 @@ export default function Skills() {
           <div className={`flex flex-col items-center ${skillPopClass}`}><SiPostman className="text-5xl text-orange-500" /><span className="mt-2 font-semibold text-white">Postman</span></div>
           <div className={`flex flex-col items-center ${skillPopClass}`}><FaDocker className="text-5xl text-blue-400" /><span className="mt-2 font-semibold text-white">Docker</span></div>
           <div className={`flex flex-col items-center ${skillPopClass}`}><FaAws className="text-5xl text-orange-400" /><span className="mt-2 font-semibold text-white">AWS</span></div>
+          <div className={`flex flex-col items-center ${skillPopClass}`}><SiJirasoftware className="text-5xl text-blue-500" /><span className="mt-2 font-semibold text-white">Jira</span></div>
         </div>
       )}
       </div>
