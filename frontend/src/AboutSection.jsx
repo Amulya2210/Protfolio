@@ -67,8 +67,6 @@ export default function AboutSection() {
 						/>
 						<div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
 							<h1 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4">About Me</h1>
-							<span className="hidden sm:inline-block h-8 border-l-2 border-yellow-300 mx-2"></span>
-							<h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4 text-yellow-300 cursor-pointer hover:underline" onClick={() => document.getElementById('extra-achievements-header')?.scrollIntoView({behavior:'smooth'})}>Extra Achievements</h2>
 						</div>
 						<p className="text-base sm:text-lg md:text-xl bg-white/10 backdrop-blur-md rounded-xl px-4 sm:px-6 py-3 sm:py-4 shadow-lg border border-white/20 mb-4 sm:mb-6">
 							I'm Ayush Amulya, a passionate full-stack software developer with a

@@ -36,6 +36,7 @@ export default function App() {
           <button onClick={() => projectsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold hover:underline">Projects</button>
           <button onClick={() => certsRef.current.scrollIntoView({ behavior: 'smooth' })} className="text-yellow-300 font-bold hover:underline">Certificates</button>
           <button onClick={() => navigate('/fidelity-experience')} className="text-yellow-300 font-bold hover:underline">Experience</button>
+          <button onClick={() => navigate('/about#extra-achievements-header')} className="text-yellow-300 font-bold hover:underline">Extra Achievements</button>
           <a
             href="/AYUSH_AMULYA_RESUME_SD_I.pdf"
             target="_blank"
